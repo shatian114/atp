@@ -24,6 +24,7 @@ if($mi_name=='全部'){
 			echo $link;
 		}
 		echo '</div>';
+		$mi_result->free();
 	}
 }else{
 	echo '搜索结果:<br />'.'<button class="btn btn-primary" onclick=\'close_s()\'>关闭</button>';
@@ -37,4 +38,6 @@ if($mi_name=='全部'){
 		echo '<p><a href=\'./pa/'.$mi_name.'/'.$pa_row['name'].'.html\'>'.$pa_row['name'].'</a></p>';
 	}
 }
+$result->free();
+$db->close();
 ?>

@@ -3,9 +3,10 @@ header("Content-type: text/html; charset=utf-8");
 error_reporting(0);
 $mi_name=$_POST['mi_name'];
 $p_n=$_POST['p_n'];
-@ $db=new mysqli('127.0.0.1', 'peng', 'yuanld2min', 'atp');
+$db_info=file('./setup/db_info.lock');
+@ $db=new mysqli(trim($db_info[0]), trim($db_info[1]), trim($db_info[2]), trim($db_info[3]));
 if(mysqli_connect_errno()){
-	echo 'db is error';
+	echo "database error";
 	exit;
 }
 if($mi_name=='全部'){

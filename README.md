@@ -1,4 +1,4 @@
 atp
 ===
 
-软件包站点的前端显示
+Package Repository Frontend for AOSC

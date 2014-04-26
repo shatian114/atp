@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>后台设置</title>
+	<link rel="icon" href="../image/aosc.png" />
+	<link rel="stylesheet" type="text/css" href="../css/atp.css" />
+	<link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.min.css" />
+	<script src="../js/jquery.js"></script>
+	<script type="text/javascript">
+		function up_site(){
+			alert("点击确定开始更新...");
+			$("#up_site_info").html('正在更新，请勿操作本页面，请稍后...');
+			$.post('./load_package.php',{},
+					function(info){
+				alert(info);
+				$("#up_site_info").html("更新完毕！");
+			});
+		}
+		function load_mi_url(){
+			$.post('./load_mi_url.php',{},
+				function(info){
+				$("#mi_url").val(info);
+			});
+		}
+		function check_db(){
+			$.post('./check_db.php',{},
+				function(info){
+				$("#db_info").html(info);
+			});
+		}
+		function up_db_info(bt){
+			alert('开始提交数据...');
+			$.post('./up_db_info.php',{
+				db_url: $("#db_url").val(),
+				db_user: $("#db_user").val(),
+				db_passwd: $("#db_passwd").val(),
+				db_name: $("#db_name").val()
+			},function(){
+				alert('数据提交完毕...');
+				check_db();
+			});
+		}
+		function up_mi_url(){
+			alert('开始提交数据...');
+			$.post('./up_mi_url.php',{
+				mi_url: $("#mi_url").val()
+			},function(){
+				alert('数据提交完毕...');
+			});
+		}
+		$(document).ready(function(){
+			check_db();
+			load_mi_url();
+		});
+	</script>
+</head>
+<body>
+	<div class="col-md-10 col-md-offset-1">
+		<h1>安同软件包平台后台管理</h1><a href="../index.html">进入网站</a>
+		<button class="btn btn-primary btn-lg" onclick="up_site()">开始更新网站</button><small id="up_site_info"></small>
+		<div class="form-inline">
+		<h3>数据库信息设置：<small id="db_info">数据库连接信息检测中...</small></h3>
+			<input type="text" id="db_url" class="form-control" placeholder="数据库地址" />
+			<input type="text" id="db_user" class="form-control" placeholder="数据库用户名" />
+			<input type="password" id="db_passwd" class="form-control" placeholder="数据库密码" />
+			<input type="text" id="db_name" class="form-control" placeholder="数据库名称" />
+			<button class="btn btn-primary" onclick="up_db_info(this)">确定</button>
+		</div>
+		<div>
+			<h3>仓库路径设置：</h3>
+			<textarea id="mi_url" class="form-control" rows="10">路径信息加载中...</textarea>
+			<button class="btn btn-primary" onclick="up_mi_url()">确定</button>
+		</div>
+	</div>
+</body>
+</html>

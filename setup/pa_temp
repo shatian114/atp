@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>安同软件包管理平台</title>
+	<link rel="icon" href="../../image/aosc.png">
+	<link rel="stylesheet" type="text/css" href="../../bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="../../css/atp.css">
+	<script src="../../js/jquery.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function(){
+		$("#search_result").hide();
+	});
+		function p_search(){
+			var reg=/[^a-zA-Z0-9\-\+]/;
+			if(reg.test($("#p_n").val())){
+				alert("只能输入字母、数字以及加减号...");
+			}else{
+				$.post('../../search.php',{
+					mi_name: $("#mi_name").val(),
+					p_n: $("#p_n").val()
+				},function(info){
+					$("#search_result").html(info).show();
+				});
+			}
+		}
+		function close_s(){
+			$("#search_result").hide();
+		}
+	</script>
+</head>
+<body>
+	<div class="col-md-10 col-md-offset-1">
+		<h1><a href="../../index.html">安同软件包平台</a><small>为您提供详细的软件包信息</small></h1>
+		<div class="form-inline">
+			<label for="mi_name">请选择要查询的库:</label>
+			<select class="form-control" id='mi_name'><option>全部</option>this is the se_mi</select>
+			<input type="text" class="form-control" id="p_n" placeholder="请输入要查询的软件包名" />
+			<button class="btn btn-info" onclick="p_search()">查询</button>
+		</div>
+		<div id='search_result'></div>
+		<div>this is the nav</div>
+	</div>
+</body>
+</html>

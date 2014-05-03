@@ -129,13 +129,13 @@ for($i=0;$i<$sum_mi;++$i){
 	$mi_file=str_replace('this is the se_mi', $se_mi, $mi_file);
 	file_put_contents('../pa/'.$mi_name[$i].'.html', $mi_file);
 	$mi_str='';
-	$se_nav=$se_nav.'<a href="./pa/'.$mi_name[$i].'.html"><h3 class="col-md-offset-'.$i.'">'.$mi_name[$i].'(共收录'.$num_pa.'个包)</h3></a>';
+	$se_nav=$se_nav.'<li><a href="./pa/'.$mi_name[$i].'.html"><span class="badge pull-right">'.$num_pa.'</span>'.$mi_name[$i].'</a></li>';
 	$num_pa=0;
 	fclose($package_file);
 }
 $index_file=file_get_contents('./index_temp');
 $index_file=str_replace('this is the se_mi', $se_mi, $index_file);
-$index_file=str_replace('this is the nav', $se_nav, $index_file);
+$index_file=str_replace('this is the nav', '<ul class="nav nav-pills nav-stacked">'.$se_nav.'</ul>', $index_file);
 file_put_contents('../index.html', $index_file);
 echo "网站更新完毕";
 ?>

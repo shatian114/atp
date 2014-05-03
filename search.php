@@ -35,7 +35,7 @@ if($mi_name=='全部'){
 		$pa_row=$result->fetch_assoc();
 		$pa_arr[$i]=array('pa'=>$pa_row['name']);
 	}
-	$pa_json=array('pa' => $pa_arr );
+	$pa_json=array('pa'=>$pa_arr);
 	echo json_encode($pa_json);
 }
 $result->free();

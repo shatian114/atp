@@ -129,11 +129,7 @@ for($i=0;$i<$sum_mi;++$i){
 	$mi_file=str_replace('this is the se_mi', $se_mi, $mi_file);
 	file_put_contents('../pa/'.$mi_name[$i].'.html', $mi_file);
 	$mi_str='';
-<<<<<<< HEAD
 	$se_nav=$se_nav.'<li><a href="./pa/'.$mi_name[$i].'.html"><span class="badge pull-right">'.$num_pa.'</span>'.$mi_name[$i].'</a></li>';
-=======
-	$se_nav=$se_nav.'<a href="./pa/'.$mi_name[$i].'.html"><h3>'.$mi_name[$i].'(共收录'.$num_pa.'个包)</h3></a>';
->>>>>>> 72452eb312aa236e3c6911c2501c05dea39e4829
 	$num_pa=0;
 	fclose($package_file);
 }
